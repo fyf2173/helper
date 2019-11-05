@@ -1,6 +1,8 @@
 package helper
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type ApiResponse struct {
 	Code    int         `json:"code"`
