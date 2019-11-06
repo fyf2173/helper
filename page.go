@@ -1,7 +1,6 @@
 package helper
 
 import (
-	"log"
 	"math"
 	"net/http"
 	"net/url"
@@ -94,7 +93,6 @@ func (p *Paginator) PageLink(page int) string {
 		values.Set("page", strconv.Itoa(page))
 	}
 	limit := ToInt(p.Request.Form.Get("limit"))
-	log.Println("limit ", limit)
 	if limit <= 0 {
 		values.Del("limit")
 	} else {
