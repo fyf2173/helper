@@ -1,14 +1,13 @@
 package helper
 
 import (
-	"fmt"
 	"golang.org/x/net/html"
 	"strings"
 )
 
 func ExtractTextFromHtml(s string, limit int) string {
 	var desc = ""
-	var count = 0
+	var descSlice []rune
 
 	domDocTest := html.NewTokenizer(strings.NewReader(s))
 	previousStartTokenTest := domDocTest.Token()
@@ -26,18 +25,16 @@ loopDomTest:
 				continue
 			}
 			TxtContent := strings.TrimSpace(html.UnescapeString(string(domDocTest.Text())))
-			if limit >= 0 && count > limit {
-				break
-			}
-			if len(TxtContent) > 0 {
-				if desc == "" {
-					desc += fmt.Sprintf("%s ", TxtContent)
-				} else {
-					desc += fmt.Sprintf(" %s", TxtContent)
-				}
-				count += len(TxtContent)
+			var runesTxt = []rune(TxtContent)
+			if len(runesTxt) > 0 {
+				descSlice = append(descSlice, []rune(TxtContent)...)
 			}
 		}
+	}
+	if len(descSlice) > limit {
+		desc =  string(descSlice[:limit])
+	} else {
+		desc = string(descSlice)
 	}
 	return desc
 }
