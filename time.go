@@ -8,6 +8,6 @@ func GetRunningTime() string {
 	return time.Now().Format(TimeFormat)
 }
 
-func String2time(timestr string) (time.Time, error) {
+func StringToTime(timestr string) (time.Time, error) {
 	return time.Parse(TimeFormat[:len(timestr)], timestr)
 }
