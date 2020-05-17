@@ -7,3 +7,7 @@ const TimeFormat = "2006-01-02 15:04:05"
 func GetRunningTime() string {
 	return time.Now().Format(TimeFormat)
 }
+
+func String2time(timestr string) (time.Time, error) {
+	return time.Parse(TimeFormat[:len(timestr)], timestr)
+}
