@@ -18,3 +18,11 @@ func ApiReturn(code int, msg string, data interface{}) string {
 	arj, _ := json.Marshal(ar)
 	return string(arj)
 }
+
+func EchoReturn(code int, msg string, data interface{}) *ApiResponse {
+	var ar = &ApiResponse{}
+	ar.Code = code
+	ar.Message = msg
+	ar.Data = data
+	return ar
+}
